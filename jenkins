@@ -3,14 +3,16 @@ pipeline {
     tools{
         maven 'maven 3.6.3'
         }
-            stage("git"){
-            
+   
+        stage("git"){
+            steps{
                 git 'https://github.com/srikanthdata/maven-web-application.git'                
-           
+            }
         }
         stage("Build") {
-                  sh "mvn clean package"
-            
+            steps {
+                sh "mvn clean package"
+            }
         }
      
 }
