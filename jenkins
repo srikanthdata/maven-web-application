@@ -15,12 +15,11 @@ pipeline {
             }
         }
         stage("build and push docker image"){
-                environment{
-                    DOCKER_CREDENTIALS = credentials('srikanth411-dockerhub')
-                  }
                 steps{
                         sh "docker build –t srikanth411/tomcattest:latest ."
-                        sh "docker login -u ${srikanth411} –password ${e9df4d01-5156-4fd7-a266-c8892d8d1aee}"
+                        withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
+                                sh "docker login -u srikanth411 –password ${dockerHubPwd}"
+                            }
                         sh "docker push srikanth411/tomcattest:latest"
                         sh "docker logout"
                     }
