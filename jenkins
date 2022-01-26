@@ -19,9 +19,9 @@ pipeline {
                     DOCKER_CREDENTIALS = credentials('srikanth411-dockerhub')
                   }
                 steps{
-                        sh 'docker build –t srikanth411-dockerhub:latest'
-                        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login  -u $DOCKERHUB_CREDENTIALS_USR –password-stdin'
-                        sh 'docker push srikanth411-dockerhub:latest'
+                        sh 'docker build –t srikanth411/tomcattest:latest'
+                        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR –password-stdin'
+                        sh 'docker push srikanth411/tomcattest:latest'
                         sh 'docker logout'
                     }
         }
