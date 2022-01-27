@@ -16,7 +16,7 @@ pipeline {
         }
         stage("build and push docker image"){
                 steps{
-                        sh "docker build –t srikanth411/tomcattest:latest ./"
+                        sh "docker build –t srikanth411/tomcattest:latest https://github.com/srikanthdata/maven-web-application.git#master:Dockerfile"
                         withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
                                 sh "docker login -u srikanth411 –password ${dockerHubPwd}"
                             }
