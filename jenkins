@@ -16,11 +16,12 @@ pipeline {
         }
         stage("build and push docker image"){
                 steps{
-                        sh "docker build –t srikanth411/tomcattest:latest ."
-                        withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
+                         withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
                                 sh "docker login -u srikanth411 –password ${dockerHubPwd}"
-                            }
-
+                          }
+                steps{
+                        sh "docker build –t srikanth411/tomcattest:latest ."
+                }
         
     }    
 }
