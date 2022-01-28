@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage("git"){
             steps{
-                git 'https://github.com/srikanthdata/maven-web-application.git'                
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: '72ef5ffa-f708-4778-8e96-243944139a31', url: 'https://github.com/srikanthdata/maven-web-application.git']]])                
             }
         }
         stage("Build") {
