@@ -14,12 +14,6 @@ pipeline {
                 sh "mvn clean package"
             }
         }
-        stage("build and push docker image"){
-                steps{
-                        sh "chmod 666 /var/run/docker.sock"
-                        sh "docker build /var/lib/jenkins/workspace/first_pipeline"
-                        
-                    }
-        }
+        
     }    
 }
