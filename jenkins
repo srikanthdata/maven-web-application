@@ -16,7 +16,7 @@ pipeline {
         }
         stage("build and push docker image"){
                 steps{
-                        sh "sudo chmod 666 /var/run/docker.sock"
+                        sh "chmod 666 /var/run/docker.sock"
                         sh "docker build /var/lib/jenkins/workspace/first_pipeline"
                         
                     }
