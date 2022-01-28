@@ -15,7 +15,8 @@ pipeline {
             }
         }
         stage("build and push docker image"){
-                steps{
+                steps{'
+                        sh "docker images"
                         sh "docker build –t srikanth411/tomcattest /var/lib/jenkins/workspace/first_pipeline"
                         withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
                                 sh "docker login -u srikanth411 –password ${dockerHubPwd}"
