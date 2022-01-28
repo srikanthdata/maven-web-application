@@ -17,7 +17,7 @@ pipeline {
         stage("build and push docker image"){
                 steps{
                         
-                        sh "docker build /var/lib/jenkins/workspace/first_pipeline"
+                        sh "sudo docker build /var/lib/jenkins/workspace/first_pipeline"
                         
                     }
         }
