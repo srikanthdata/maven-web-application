@@ -1,19 +1,18 @@
 pipeline {
     agent any
-    environment{
-    PATH = "/var/lib/jenkins/tools/hudson.tasks.Maven_MavenInstallation/maven_3.6.3/bin:$PATH"
-    }
+   
     stages {
         stage("git"){
             steps{
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: '72ef5ffa-f708-4778-8e96-243944139a31', url: 'https://github.com/srikanthdata/maven-web-application.git']]])                
             }
         }
-        stage("Build") {
-            steps {
-                sh "mvn clean install"
-            }
-        }
+        stage('Mvn Package'){
+     def mvnHome = tool name: 'maven-3.6.3', type: 'maven'
+     def mvnCMD = "${mvnHome}/bin/mvn"
+     sh "${mvnCMD} clean package"
+   }
+
         stage("build and push docker image"){
                 steps{
                          
